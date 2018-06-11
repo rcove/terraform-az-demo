@@ -9,17 +9,27 @@ DESCRIPTION
 }
 
 variable "key_name" {
-  description = "Desired name of AWS key pair"
+  description = "Desired name of ssh key pair"
 }
-variable "aws_vpc_cidr" {
+variable "resource_group" {
 }
-variable "aws_external1_subnet_cidr" {
+variable "vnet_cidr" {
 }
-variable "aws_external2_subnet_cidr" {
+variable "dc_location" {
 }
-variable "aws_webserver1_subnet_cidr" {
+variable "external1_subnet_cidr" {
 }
-variable "aws_webserver2_subnet_cidr" {
+variable "external2_subnet_cidr" {
+}
+variable "internal1_subnet_cidr" {
+}
+variable "internal2_subnet_cidr" {
+}
+variable "webserver1_subnet_cidr" {
+}
+variable "webserver2_subnet_cidr" {
+}
+variable "app1_subnet_cidr" {
 }
 variable "my_user_data" {
 }
@@ -39,37 +49,3 @@ variable "AllowUploadDownload" {
 }
 variable "pwd_hash" {
 }
-
-variable "aws_region" {
-  description = "AWS region to launch servers."
-  default     = "ap-southeast-2"
-}
-variable "primary_az" {
-  description = "primary AZ"
-  default     = "ap-southeast-2a"
-}
-variable "secondary_az" {
-  description = "secondary AZ"
-  default     = "ap-southeast-2b"
-}
-# Check Point R80 BYOL
-data "aws_ami" "chkp_ami" {
-  most_recent      = true
-  filter {
-    name   = "name"
-    values = ["Check Point CloudGuard IaaS GW BYOL R80.10-*"]
-  }
-  owners = ["679593333241"]
-}
-
-# Ubuntu Image
-data "aws_ami" "ubuntu_ami" {
-  most_recent      = true
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
-  }
-}
-
-
-
